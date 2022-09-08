@@ -6,17 +6,26 @@ use Livewire\Component;
 
 class HomeComponent extends Component
 {
-    public $message;
-    public $query;
+    public $count = 0;
 
     public function render()
     {
         return view('livewire.home-component');
     }
 
-    public function search()
+    public function add()
     {
-        $this->message = $this->query;
+        return $this->count++;
+    }
+
+    public function substract()
+    {
+        return $this->count--;
+    }
+
+    public function store()
+    {
+        return $this->count = 20;
     }
 
 }
