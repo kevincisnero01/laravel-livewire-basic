@@ -5,10 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header"> Home Component</div>
 
                 <div class="card-body">
-                    @livewire('parent-component')
+
+                   @livewire('home-component')
                 </div>
             </div>
         </div>
