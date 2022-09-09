@@ -1,5 +1,10 @@
 <div>
 
+    <center>
+        <button type="button" class="btn btn-info my-4"  wire:click="$emitTo('user-modal', 'display-modal')">Mostral Modal</button>
+        @livewire('user-modal')
+    </center>   
+
     <form wire:submit.prevent="save">
         <label for="name">Nombre</label>
         <input type="text" wire:model="name"  class="form-control mb-3">
