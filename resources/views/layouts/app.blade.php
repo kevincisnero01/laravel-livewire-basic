@@ -81,7 +81,14 @@
             @yield('content')
         </main>
     </div>
+
     @livewireScripts
+
+
+    
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     @yield('scripts')
 </body>
 </html>

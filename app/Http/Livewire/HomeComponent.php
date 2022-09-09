@@ -8,20 +8,19 @@ class HomeComponent extends Component
 {   
     public $name;
     public $email;
-    public $user;
 
-    protected $listeners = ["resetForm" => "resetData"];
-
-    public function save(){
-        $this->emit('success');
+    public function save()
+    {
+        $this->dispatchBrowserEvent('swal-success', [
+            'title' => 'Guardado',
+            'icon' => 'success',
+            'text' => 'Registros de formulario guardados exitosamente'
+        ]);
     }
 
-    public function resetData(User $user)
+    public function resetData()
     {
         $this->reset();
-        $this->user = $user;
-        $this->name = $user->name;
-        $this->email = $user->email;
     }
 
     public function render()
