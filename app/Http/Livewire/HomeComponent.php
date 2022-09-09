@@ -13,7 +13,7 @@ class HomeComponent extends Component
     protected $listeners = ["resetForm" => "resetData"];
 
     public function save(){
-
+        $this->emit('success');
     }
 
     public function resetData(User $user)

@@ -12,3 +12,11 @@
    </form>
 
 </div>
+
+@section('scripts')
+    <script>
+    Livewire.on('success', () => {
+        alert('Formulario enviado exitosamente')
+    })
+    </script>
+@endsection
