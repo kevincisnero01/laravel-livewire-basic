@@ -35,9 +35,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('products.index') }}">Productos</a>
-                          </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="{{ route('products.index') }}">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="{{ route('files.index') }}">Archivos</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
