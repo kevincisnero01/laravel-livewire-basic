@@ -16,7 +16,7 @@
                         </div>
                       @endif
     
-                      <table class="table table-strippe">
+                      <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
