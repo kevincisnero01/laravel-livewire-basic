@@ -18,13 +18,13 @@
                                     <th>Archivo</th>
                                     <th>Extension</th>
                                     <th>Ruta</th>
-                                    <th>Previsualización</th>
+                                    <th class="text-center">Previsualización</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($files as $file)
-                                    <tr>
-                                        <td class="text-center">{{ $file->id }}</td>
+                                    <tr class="align-middle">
+                                        <td class="text-center ">{{ $file->id }}</td>
                                         <td>{{ $file->file_name }}</td>
                                         <td class="text-center">{{ $file->file_extension }}</td>
                                         <td>{{ $file->file_patch }}</td>
@@ -34,7 +34,7 @@
                                             </td>
                                         @else
                                             <td> 
-                                                <img src="{{ asset($file->file_patch) }}" with="150" height="150" class="img_fluid" alt="Imagen">
+                                                <img src="{{ asset($file->file_patch) }}" with="150" height="150" class="img-fluid border border-3 rounded" alt="Imagen">
                                             </td>
                                         @endif
                                     </tr>
