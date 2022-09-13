@@ -33,7 +33,7 @@
                         </div>
                         
                         <div class="form-group mb-4">
-                            <div wire:ignore>
+                            <div  wire:ignore>
                                 <label for="category">Categoría</label>
                                 <select wire:model="category" id="category" class="form-control select2" >
                                     <option value="" >Seleccione una opción</option>
@@ -62,7 +62,9 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
+        $('.select2').select2({
+            selectionCssClass: 'select-custom',
+        });
 
         $('.select2').on('change', function() {
             @this.set('category', $(this).val())
