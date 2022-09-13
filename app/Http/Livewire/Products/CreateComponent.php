@@ -27,7 +27,8 @@ class CreateComponent extends Component
             'integer'
         ],
         'category' => [
-            'required'
+            'required',
+            'integer'
         ]
     ];
 

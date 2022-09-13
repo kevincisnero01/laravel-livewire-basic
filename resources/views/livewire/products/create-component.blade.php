@@ -33,13 +33,15 @@
                         </div>
                         
                         <div class="form-group mb-4">
-                            <label for="category">Categoría</label>
-                            <select wire:model="category" id="category" class="form-control select2" >
-                                <option value="" >Seleccione una opción</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <label for="category">Categoría</label>
+                                <select wire:model="category" id="category" class="form-control select2" >
+                                    <option value="" >Seleccione una opción</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div><!--ignore-->
                             @error('category') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
 
@@ -56,3 +58,15 @@
         </div><!--.row-->
     </div><!--.container-->
 </div>
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+
+        $('.select2').on('change', function() {
+            @this.set('category', $(this).val())
+        });
+    });
+</script>
+@endsection
