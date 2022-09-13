@@ -16,20 +16,31 @@
                       <form wire:submit.prevent="save">
                         <div class="form-group mb-2">
                             <label for="name">Nombre</label>
-                            <input wire:model="name" type="text" class="form-control" id="name" placeholder="Ingrese el nombre del producto">
+                            <input wire:model="name" type="text" id="name" class="form-control" placeholder="Ingrese el nombre del producto">
                             @error('name') <span class="error text-danger"> {{ $message }} </span>@enderror
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="price">Precio</label>
-                            <input wire:model="price" type="text" class="form-control" id="price" placeholder="Ingrese el precio del producto">
+                            <input wire:model="price" type="text" id="price" class="form-control" placeholder="Ingrese el precio del producto">
                             @error('price') <span class="error text-danger"> {{ $message }} </span>@enderror
                         </div>
 
                         <div class="form-group mb-4">
                             <label for="quantity">Cantidad</label>
-                            <input wire:model="quantity" type="text" class="form-control" id="quantity" placeholder="Ingrese la candidad del producto">
+                            <input wire:model="quantity" type="text" id="quantity" class="form-control" placeholder="Ingrese la candidad del producto">
                             @error('quantity') <span class="error text-danger"> {{ $message }} </span>@enderror
+                        </div>
+                        
+                        <div class="form-group mb-4">
+                            <label for="category">Categoría</label>
+                            <select wire:model="category" id="category" class="form-control select2" >
+                                <option value="" >Seleccione una opción</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="d-grid gap-2">

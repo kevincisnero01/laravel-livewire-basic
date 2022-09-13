@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Products;
 
+use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -10,6 +11,8 @@ class CreateComponent extends Component
     public $name;
     public $price;
     public $quantity;
+    public $categories;
+    public $category;
 
     protected $rules = [
         'name' => [
@@ -22,6 +25,9 @@ class CreateComponent extends Component
         'quantity' => [
             'required',
             'integer'
+        ],
+        'category' => [
+            'required'
         ]
     ];
 
@@ -31,7 +37,12 @@ class CreateComponent extends Component
         'price.numeric' => 'El precio debe ser un numero valido',
         'quantity.required' => 'La cantidad del producto es obligatorio',
         'quantity.integer' => 'La cantidad debe ser un numero entero',
+        'category.required' => 'La categoria del producto es obligatoria'
     ];
+
+    public function mount(){
+        $this->categories = Category::all();
+    }
 
     public function updated($propertyName)
     {
@@ -46,7 +57,8 @@ class CreateComponent extends Component
         Product::create([
             'name' => $this->name,
             'price' => $this->price,
-            'quantity' => $this->quantity
+            'quantity' => $this->quantity,
+            'category_id' => $this->category
         ]);
 
         return redirect()->route('products.index')
