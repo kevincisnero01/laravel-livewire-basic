@@ -47,6 +47,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="{{ route('files.index') }}">Archivos</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="{{ route('employees.index') }}">Empleados</a>
+                            </li>
                         @endauth
                     </ul>
 

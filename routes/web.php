@@ -15,3 +15,6 @@ Route::get('/products/create',App\Http\Livewire\Products\CreateComponent::class)
 
 Route::get('/files',App\Http\Livewire\Files\IndexComponent::class)->name('files.index');
 Route::get('/files/create',App\Http\Livewire\Files\CreateComponent::class)->name('files.create');
+
+Route::get('/employees',App\Http\Livewire\Employees\IndexComponent::class)->name('employees.index');
+Route::get('/employees/create',App\Http\Livewire\Employees\CreateComponent::class)->name('employees.create');
