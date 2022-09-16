@@ -15,6 +15,7 @@ class Employee extends Model
         'salary',
         'address',
         'phone_number',
+        'photo',
         'employee_status_id'
     ];
 

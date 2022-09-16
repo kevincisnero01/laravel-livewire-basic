@@ -3,7 +3,10 @@
 <div class="row">
 <div class="col-sm-12">
     <div class="card">
-        <h1 class="card-header">Listado de Empleados</h1>
+        <h1 class="card-header">
+            Listado de Empleados
+            <a href="{{ route('employees.create') }}" class="btn btn-primary float-end">Crear Empleado</a>
+        </h1>
         <div class="card-body">
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
