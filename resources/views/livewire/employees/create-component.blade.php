@@ -19,27 +19,40 @@
             <div class="col-7">
 
                 <div class="form-group my-2">
-                    <label for="name" class="fw-bold">Nombre</label>
-                    <input wire:model="name" type="text" id="name" class="form-control" placeholder="Ingrese el nombre del empleado.">
-                    @error('name') <span class="text-danger">{{ $name }}</span> @enderror
+                    <label for="name" class="fw-bold">
+                        <i class="bi bi-asterisk text-danger fs-8"></i> 
+                        Nombre
+                    </label>
+                    <input wire:model="name" type="text" id="name" class="form-control" placeholder="Ingrese el nombre del empleado." autofocus required>
+                    @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+
                 </div>
 
                 <div class="form-group my-2">
-                    <label for="code" class="fw-bold">Código</label>
-                    <input wire:model="code" type="text" id="code" class="form-control" placeholder="Ingrese el código del empleado.">
-                    @error('code') <span class="text-danger">{{ $code }}</span> @enderror
+                    <label for="code" class="fw-bold">
+                        <i class="bi bi-asterisk text-danger fs-8"></i>
+                        Código
+                    </label>
+                    <input wire:model="code" type="text" id="code" class="form-control" placeholder="Ingrese el código del empleado." required>
+                    @error('code') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group my-2">
-                    <label for="salary class="fw-bold"">Salario</label>
-                    <input wire:model="salary" type="number" min="1" max="1000" step="100" id="salary" class="form-control" placeholder="Ingrese el salario del empleado.">
-                    @error('salary') <span class="text-danger">{{ $salary }}</span> @enderror
+                    <label for="salary class="fw-bold"">
+                        <i class="bi bi-asterisk text-danger fs-8"></i>
+                        Salario
+                    </label>
+                    <input wire:model="salary" type="number" min="100" id="salary" class="form-control" placeholder="Ingrese el salario del empleado." required>
+                    @error('salary') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group my-2">
-                    <label for="phone_number" class="fw-bold">Telefono</label>
-                    <input wire:model="phone_number"  type="tel" id="phone_number" class="form-control" placeholder="Ingrese su telefono. Ej: 0412 1234567.">
-                    @error('phone_number') <span class="text-danger">{{ $phone_number }}</span> @enderror
+                    <label for="phone_number" class="fw-bold">
+                        <i class="bi bi-asterisk text-danger fs-8"></i>
+                        Telefono
+                    </label>
+                    <input wire:model="phone_number"  type="tel" id="phone_number" class="form-control" placeholder="Ingrese su telefono. Ej: 0412 1234567." required>
+                    @error('phone_number') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
             </div><!--.col--> 
@@ -48,7 +61,7 @@
                 <div class="form-group mb-2">
                     <label for="photo" class="fw-bold">Foto</label>
                     <input wire:model="photo" type="file" id="photo" class="form-control" >
-                    @error('photo') <span class="text-danger">{{ $photo }}</span> @enderror
+                    @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="d-inline-block border border-5 pt-1 border-secondary rounded text-center mx-3 width-200 height-200">
@@ -65,21 +78,26 @@
         </div><!--.row-->
 
             <div class="form-group my-2">
-                <label for="address" class="fw-bold">Direccion</label>
+                <label for="address" class="fw-bold">
+                    <i class="bi bi-asterisk text-danger fs-8"></i>
+                    Dirección
+                </label>
                 <textarea wire:model="address" id="address" rows="2" class="form-control" placeholder="Ingrese la dirección del empleado.">
                 </textarea>
-                @error('address') <span class="text-danger">{{ $address }}</span> @enderror
+                @error('address') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group my-2">
                 <label for="employee_status_id" class="fw-bold">Estado</label>
-                <select wire:model="employee_status_id" id="employee_status_id" class="form-control">
+                <div wire:ignore>
+                <select wire:model="employee_status_id" id="employee_status_id" class="form-control select2">
                     <option value="">Seleccione un estado</option>
                     @foreach($statuses as $status)
                         <option value="{{$status->id}}">{{ $status->name }}</option>
                     @endforeach
                 </select>
-                @error('employee_status_id') <span class="text-danger">{{ $employee_status_id }}</span> @enderror
+                </div>
+                @error('employee_status_id') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group my-4 d-grid gap-2">
@@ -88,13 +106,30 @@
                     <i class="bi bi-save"></i>
                 </button>
                 <button type="reset" class="btn btn-sm btn-secondary">Limpiar</button>
+                <p class="text-center">
+                    <i class="bi bi-asterisk text-danger fs-8"></i>
+                    Estos campos son obligatorios
+                </p>
             </div>    
         </form>
-
-    </div><!--.body-->
+    </div><!--.card-body-->
 </div><!--.card-->
 
 </div><!--.col-->
 </div><!--.row-->
 </div><!--.container-->
 </div>
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            selectionCssClass: 'select-custom',
+        });
+
+        $('.select2').on('change', function() {
+            @this.set('employee_status_id', $(this).val())
+        });
+    });
+</script>
+@endsection

@@ -7991,6 +7991,14 @@ textarea.form-control-lg {
   font-size: 0.9rem !important;
 }
 
+.fs-7 {
+  font-size: 0.7rem !important;
+}
+
+.fs-8 {
+  font-size: 0.5rem !important;
+}
+
 .fst-italic {
   font-style: italic !important;
 }
@@ -18317,3 +18325,19 @@ textarea.form-control-lg {
   content: "\f83e";
 }
 
+/*=====<Fix Styles Select2>=====*/
+
+.select-custom{
+  opacity: 0.8 !important;
+  height: 36px !important;
+  padding: 4px !important;
+  color: #212529 !important; 
+  background-color: #f8fafc !important;
+}
+
+.select-custom .select2-selection__arrow{
+  height: 26px;
+  top: 5px !important;
+}
+
+/*=====</Fix Styles 
