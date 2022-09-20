@@ -21,20 +21,22 @@
                 <thead class="table-light">
                     <tr>
                         <th class="col-2">Empleado</th>
-                        <th class="col-2">Foto</th>
+                        <th class="col-1">Foto</th>
                         <th class="col-1">Código</th>
                         <th class="col-1">Salario</th>
                         <th class="col-2">Dirección</th>
-                        <th class="col-1">Telefono</th>
+                        <th class="col-2">Telefono</th>
                         <th class="col-1">Status</th>
                         <th class="col-2">Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     @foreach($employees as $employee)
-                    <tr>
+                    <tr class="align-middle">
                         <td>{{ $employee->name }}</td>
-                        <td></td>
+                        <td>
+                            <img src="{{ $employee->photo }}" width="50" height="50" alt="foto" class="border border-1 border-secondary rounded">
+                        </td>
                         <td>{{ $employee->code }}</</td>
                         <td>{{ $employee->salary }}</</td>
                         <td>{{ $employee->address }}</</td>
@@ -55,7 +57,7 @@
                         </</td>
                         <td>
                             <button class="btn btn-sm btn-success">Editar</button>
-                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                            <button type="button" wire:click="deleteConfirm({{ $employee->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                         </td>
                     </tr>
                     @endforeach
@@ -69,3 +71,37 @@
 </div><!--.row-->
 </div><!--.container--->
 </div>
+
+@section('scripts')
+<script>
+    window.addEventListener('swal-confirm-delete', event => {
+        Swal.fire({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.icon,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, Eliminalo!',
+            cancelButtonText: 'Calcelar'
+        }).then((result) => {
+            if(result.isConfirmed){
+
+                livewire.emit('delete', event.detail.id);
+
+                Swal.fire({
+                    title:'¡Eliminado!',
+                    text:'Tu registro fue eliminado exitosamente',
+                    icon:'success',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        })
+    })
+</script>
+@endsection
+
+{{--
+                
+--}}
