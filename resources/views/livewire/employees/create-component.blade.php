@@ -23,7 +23,7 @@
                         <i class="bi bi-asterisk text-danger fs-8"></i> 
                         Nombre
                     </label>
-                    <input wire:model="name" type="text" id="name" class="form-control" placeholder="Ingrese el nombre del empleado." autofocus required>
+                    <input wire:model.defer="name" type="text" id="name" class="form-control" placeholder="Ingrese el nombre del empleado." autofocus required>
                     @error('name') <span class="text-danger">{{ $message }}</span> @enderror
 
                 </div>
@@ -33,7 +33,7 @@
                         <i class="bi bi-asterisk text-danger fs-8"></i>
                         Código
                     </label>
-                    <input wire:model="code" type="text" id="code" class="form-control" placeholder="Ingrese el código del empleado." required>
+                    <input wire:model.defer="code" type="text" id="code" class="form-control" placeholder="Ingrese el código del empleado." required>
                     @error('code') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
@@ -42,7 +42,7 @@
                         <i class="bi bi-asterisk text-danger fs-8"></i>
                         Salario
                     </label>
-                    <input wire:model="salary" type="number" min="100" id="salary" class="form-control" placeholder="Ingrese el salario del empleado." required>
+                    <input wire:model.defer="salary" type="number" min="100" id="salary" class="form-control" placeholder="Ingrese el salario del empleado." required>
                     @error('salary') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
@@ -51,7 +51,7 @@
                         <i class="bi bi-asterisk text-danger fs-8"></i>
                         Telefono
                     </label>
-                    <input wire:model="phone_number"  type="tel" id="phone_number" class="form-control" placeholder="Ingrese su telefono. Ej: 0412 1234567." required>
+                    <input wire:model.defer="phone_number"  type="tel" id="phone_number" class="form-control" placeholder="Ingrese su telefono. Ej: 0412 1234567." required>
                     @error('phone_number') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
@@ -60,7 +60,7 @@
             <div class="col-5" >
                 <div class="form-group mb-2">
                     <label for="photo" class="fw-bold">Foto</label>
-                    <input wire:model="photo" type="file" id="photo" class="form-control" >
+                    <input wire:model.defer="photo" type="file" id="photo" class="form-control" >
                     @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
@@ -82,7 +82,7 @@
                     <i class="bi bi-asterisk text-danger fs-8"></i>
                     Dirección
                 </label>
-                <textarea wire:model="address" id="address" rows="2" class="form-control" placeholder="Ingrese la dirección del empleado.">
+                <textarea wire:model.defer="address" id="address" rows="2" class="form-control" placeholder="Ingrese la dirección del empleado.">
                 </textarea>
                 @error('address') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
@@ -90,7 +90,7 @@
             <div class="form-group my-2">
                 <label for="employee_status_id" class="fw-bold">Estado</label>
                 <div wire:ignore>
-                <select wire:model="employee_status_id" id="employee_status_id" class="form-control select2">
+                <select wire:model.defer="employee_status_id" id="employee_status_id" class="form-control select2">
                     <option value="">Seleccione un estado</option>
                     @foreach($statuses as $status)
                         <option value="{{$status->id}}">{{ $status->name }}</option>

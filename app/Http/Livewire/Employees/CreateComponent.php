@@ -25,8 +25,8 @@ class CreateComponent extends Component
         'salary' =>  'required|numeric',
         'address' => 'required',
         'phone_number' => 'required',
-        'employee_status_id' => 'integer',
-        'photo' => 'mimes:jpg,png'
+        'employee_status_id' => 'nullable|integer',
+        'photo' => 'nullable|image|mimes:jpg,png'
     ];
 
     protected $messages = [
@@ -42,17 +42,12 @@ class CreateComponent extends Component
 
     public function save()
     {   
-        $this->validate();
-        
+        $data = $this->validate();
+        $employee_photo = $this->photo ? 'storage/'.$this->photo->store('employees','public') : 'storage/employees/avatar-default.jpg';
+
         Employee::create([
-            'name' => $this->name,
-            'code' => $this->code,
-            'salary' =>  $this->salary,
-            'address' => $this->address,
-            'phone_number' => $this->phone_number,
-            'employee_status_id' => $this->employee_status_id,
-            'photo' => 'storage/'.$this->photo->store('employees','public'),
-        ]);
+            'photo' => $employee_photo,
+        ] + $data);
 
         return redirect()->route('employees.index')->with('success','Empleado Guardado exitosamente.');
     }

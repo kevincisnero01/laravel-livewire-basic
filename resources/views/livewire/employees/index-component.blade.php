@@ -8,13 +8,6 @@
             <a href="{{ route('employees.create') }}" class="btn btn-primary float-end">Crear Empleado</a>
         </h1>
         <div class="card-body">
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            
             <div class="table-responsible">
             <table class="table table-sm table-hover">
                 <caption>Lista de Empleados</caption>
@@ -74,6 +67,14 @@
 
 @section('scripts')
 <script>
+    @if(session('success'))
+    Swal.fire({
+        icon: 'success',
+        title: 'Registro Exitoso',
+        text: "{{ session('success') }}"
+    });
+    @endif
+  
     window.addEventListener('swal-confirm-delete', event => {
         Swal.fire({
             title: event.detail.title,
@@ -101,7 +102,3 @@
     })
 </script>
 @endsection
-
-{{--
-                
---}}
