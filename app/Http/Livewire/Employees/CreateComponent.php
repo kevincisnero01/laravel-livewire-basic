@@ -19,6 +19,25 @@ class CreateComponent extends Component
     public $employee_status_id; 
     public $photo;
 
+    public function render()
+    {
+        return view('livewire.employees.create-component',[
+            'statuses' => EmployeeStatus::all()
+        ])->extends('layouts.app')->section('content');
+    }
+
+    public function save()
+    {   
+        $data = $this->validate();
+        $employee_photo = $this->photo ? 'storage/'.$this->photo->store('employees','public') : 'storage/employees/avatar-default.jpg';
+
+        Employee::create([
+            'photo' => $employee_photo,
+        ] + $data);
+
+        return redirect()->route('employees.index')->with('success','Empleado Guardado exitosamente.');
+    }
+    
     protected $rules = [
         'name' => 'required',
         'code' => 'required',
@@ -39,23 +58,4 @@ class CreateComponent extends Component
         'salary.numeric' =>  'El campo de salario debe ser un numero valido',
         'photo.mimes' => 'El campo de foto debe ser un tipo de archivo:jpg,png'
     ];
-
-    public function save()
-    {   
-        $data = $this->validate();
-        $employee_photo = $this->photo ? 'storage/'.$this->photo->store('employees','public') : 'storage/employees/avatar-default.jpg';
-
-        Employee::create([
-            'photo' => $employee_photo,
-        ] + $data);
-
-        return redirect()->route('employees.index')->with('success','Empleado Guardado exitosamente.');
-    }
-
-    public function render()
-    {
-        return view('livewire.employees.create-component',[
-            'statuses' => EmployeeStatus::all()
-        ])->extends('layouts.app')->section('content');
-    }
 }

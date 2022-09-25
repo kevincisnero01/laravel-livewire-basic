@@ -49,7 +49,7 @@
                             </span>
                         </</td>
                         <td>
-                            <button class="btn btn-sm btn-success">Editar</button>
+                            <a href="{{ route('employees.edit',$employee->id) }}" class="btn btn-sm btn-success">Editar</a>
                             <button type="button" wire:click="deleteConfirm({{ $employee->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                         </td>
                     </tr>

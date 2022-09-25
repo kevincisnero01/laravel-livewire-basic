@@ -18,3 +18,4 @@ Route::get('/files/create',App\Http\Livewire\Files\CreateComponent::class)->name
 
 Route::get('/employees',App\Http\Livewire\Employees\IndexComponent::class)->name('employees.index');
 Route::get('/employees/create',App\Http\Livewire\Employees\CreateComponent::class)->name('employees.create');
+Route::get('/employees/{employee}/edit',App\Http\Livewire\Employees\EditComponent::class)->name('employees.edit');
